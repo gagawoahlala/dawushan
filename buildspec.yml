@@ -1,21 +1,11 @@
-name: Upload Website
+version: 0.2
 
-on:
-  push:
-    branches:
-    - master
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'smokymtcrn.com'
-        AWS_ACCESS_KEY_ID: 'AKIAJSKRWR5JBIU7JH4Q'
-        AWS_SECRET_ACCESS_KEY: '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'
-        AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
-        SOURCE_DIR: 'dist'      # optional: defaults to entire repository
+phases:
+    install:
+      runtime-versions:
+        nodejs: 10
+    build:
+      commands:
+      - npm install
+      - npm run build
+      - aws s3 sync dist s3://smokymtcrn.com --delete

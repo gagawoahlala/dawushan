@@ -17,5 +17,5 @@ jobs:
         AWS_S3_BUCKET: 'smokymtcrn.com'
         AWS_ACCESS_KEY_ID: 'AKIAJSKRWR5JBIU7JH4Q'
         AWS_SECRET_ACCESS_KEY: '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'
-        AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
-        SOURCE_DIR: 'public'      # optional: defaults to entire repository
+        AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
+        SOURCE_DIR: 'dist'      # optional: defaults to entire repository

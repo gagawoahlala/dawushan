@@ -48,6 +48,7 @@ const dialog = [
 const bitchCount = 5;
 const photoCount = 12;
 
+let isStarClicked = false;
 
 
 window.onload = function () {
@@ -123,6 +124,30 @@ window.onload = function () {
     chat.appendChild(container);
   })
 
+
+  // get position of star
+  const star = document.querySelector('.toolbar-bottom .toolbar-icons .star');
+  const anchor = document.querySelector('#anchor');
+  // const overlay = anchor.parentNode 
+  const rect = star.getBoundingClientRect();
+  const desireW = 30
+  const desireH = 30
+  const offsetY = desireH - rect.height;
+  const offsetX = rect.width - desireW;
+  anchor.style.width = `${desireW}px`
+  anchor.style.height = `${desireH}px`
+  anchor.style.left = `${rect.x + offsetX / 2}px`
+  anchor.style.top = `${rect.y - offsetY / 2}px`
+  anchor.addEventListener('click', function() {
+    star.click();
+    anchor.parentNode.classList.add('hide')
+  });
+  const shadowTimeOut = setTimeout(function(){
+    anchor.parentNode.classList.remove('hide')
+  }, 15000);
+  star.addEventListener('click', function(){
+    clearTimeout(shadowTimeOut);
+  });
 
 
   console.log(toolbarSections);

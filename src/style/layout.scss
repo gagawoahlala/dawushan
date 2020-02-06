@@ -8,6 +8,33 @@
 }
 body {
   display: flex;
+  div.overlay {
+    &.hide {
+      visibility: hidden;
+      opacity: 0;
+    }
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #00000096;
+    z-index: 1;
+    transition: visibility 0.3s linear,opacity 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    opacity: 1;
+    #anchor {
+      background-image: url('../img/star-regular.svg');
+      position: absolute;
+      height: 20px;
+      background-size: 20px 20px;
+      border-radius: 15px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: black;
+      animation-duration: 0.5s;
+      animation-name: changeScale;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+  }
   h2 {
     margin: 12px 10px;
   }
@@ -472,6 +499,21 @@ body {
 
   }
 
+}
+
+@keyframes changeScale {
+  // 2% {
+  //   transform: scale(1.0);
+  // }
+  // 10% {
+  //   transform: scale(1.1);
+  // }
+  from {
+    transform: scale(1.0);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }
 
 @keyframes border-flicker {

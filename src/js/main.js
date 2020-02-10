@@ -1,41 +1,29 @@
 
 import moment from 'moment';
 
-const bitchSource = [
-  require('../img/zyz.gif'),
-  require('../img/gls.gif'),
-  require('../img/lyf-1.jpg'),
-  require('../img/ll.jpg'),
-  require('../img/tf-1.gif')
-];
 
-const photoSource = [
-  require('../img/ytl-2.jpg'),
-  require('../img/ytl-3.jpg'),
-  require('../img/ytl-4.jpg'),
-  require('../img/ytl-5.jpg'),
-  require('../img/ytl-6.jpg'),
-  require('../img/ytl-7.jpg'),
-  require('../img/ytl-9.jpg'),
-  require('../img/ytl-10.jpg'),
-  require('../img/hjy-1.jpg'),
-  require('../img/hjy-2.jpg'),
-  require('../img/hjy-3.jpg'),
-  require('../img/hjy-4.jpg'),
-  require('../img/cnq-1.jpg'),
-  require('../img/cnq-2.jpg'),
-  require('../img/cnq-3.jpg')
-];
+function importAll(r) {
+  return r.keys().map(r);
+}
+
+const photoSource = importAll(require.context('../img/pictureSource/', false, /\.(png|jpe?g|svg)$/));
+const bitchSource = importAll(require.context('../img/bitchSource/', false, /\.(png|jpe?g|gif|svg)$/));
+
 
 const dialog = [
   {
     date: moment().format("ddd, MMM DD"),
-    text: '你好，我叫杨大宝，我和杨葱花是此次大雾山活动的组织者。',
+    text: '你好，我叫杨大宝，我和洋葱花是此次大雾山活动的组织者。',
     time: moment().subtract(30, 'minutes').format('LT')
   },
   {
     date: moment().format("ddd, MMM DD"),
     text: '。。。。。。。。',
+    time: ''
+  },
+  {
+    date: '',
+    text: '🍆🍑',
     time: ''
   },
   {
@@ -47,17 +35,19 @@ const dialog = [
 
 const bitchCount = 5;
 const photoCount = 12;
+const HAS_CLICKED_STAR = 'HAS_CLICKED_STAR';
 
-let isStarClicked = false;
+let isStarClicked = localStorage.getItem(HAS_CLICKED_STAR) || false;
 
 
 window.onload = function () {
+
   photoSource.sort(() => Math.random() - 0.5);
   bitchSource.sort(() => Math.random() - 0.5);
   let photoWall = document.querySelector('.whos-nearby .nearby-photo-wall');
   let freshWall = document.querySelector('.fresh-faces .fresh-face-photo-wall');
   let singPhoto = document.querySelector('.whos-nearby .nearby-photo-wall .sample-pic-ytl');
-
+  singPhoto.addEventListener('contextmenu', e => false);
 
   singPhoto.addEventListener('click', function() {
     let charBtn = document.querySelector('.toolbar-icons .chat');
@@ -67,15 +57,17 @@ window.onload = function () {
   for (let i = 0; i < photoCount; i++) {
     let singlePicture = document.createElement('img');
     singlePicture.classList.add('sample-pic-ytl');
-    singlePicture.src = photoSource[i].default;
+    singlePicture.src = photoSource[i];
     // singlePicture.style.backgroundImage = `url(${photoSource[0]})`;
     // console.log(singlePicture.style)
     photoWall.appendChild(singlePicture);
+    singlePicture.addEventListener('contextmenu', e => false);
+
   }
   for (let i = 0; i < bitchCount; i++) {
     let singlePicture = document.createElement('img');
     // singlePicture.classList.add('sample-pic-ytl');
-    singlePicture.src = bitchSource[i].default;
+    singlePicture.src = bitchSource[i];
     // singlePicture.style.backgroundImage = `url(${photoSource[0]})`;
     // console.log(singlePicture.style)
     freshWall.appendChild(singlePicture);
@@ -142,13 +134,15 @@ window.onload = function () {
     star.click();
     anchor.parentNode.classList.add('hide')
   });
-  const shadowTimeOut = setTimeout(function(){
-    anchor.parentNode.classList.remove('hide')
-  }, 15000);
-  star.addEventListener('click', function(){
-    clearTimeout(shadowTimeOut);
-  });
+  if (!isStarClicked) {
+    const shadowTimeOut = setTimeout(function(){
+      anchor.parentNode.classList.remove('hide')
+    }, 15000);
+    star.addEventListener('click', function(){
+      localStorage.setItem(HAS_CLICKED_STAR, true);
+      clearTimeout(shadowTimeOut);
+    });
+  }
 
 
-  console.log(toolbarSections);
 }

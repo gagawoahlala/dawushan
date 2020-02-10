@@ -135,7 +135,9 @@ body {
                   width: 100%;
                   height: 100%;
                   object-fit: cover;
+                  pointer-events: none;
                   &.reference {
+                    pointer-events: auto;
                     background-image: linear-gradient(rgba(134, 198, 251, 0.5), rgba(173, 235, 253, 0.38)), url("../img/ytl-1.jpg");
                     position: relative;
                     div {
@@ -203,28 +205,68 @@ body {
       }
       &.star {
         article {
-          padding: 0px 10px 10px;
+          padding: 0px 24px 10px;
           // overflow: scroll;
           text-align: center;
           * {
-            // font-size: 14px;
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 18px;
           }
           header {
+            * {
+              font-size: 16px;
+              line-height: unset;
+            }
+            h1 {
+              font-size: 26px;
+              margin-bottom: 45px;
+              font-weight: bold;
+            }
             h2 {
+
               display: flex;
-              justify-content: space-around;
+              justify-content: space-evenly;
+              &.poem {
+                * {
+                  font-family: cursive;
+                  font-size: 14px;
+                }
+              }
               div {
                 &.title {
                   writing-mode: vertical-rl;
                   line-height: 1em;
                   width: 1em;
                   text-align: start;
+                  padding-top: 3px;
+
+                  // font-size: 12px;
                 }
               }
             }
           }
           section {
-            margin-top: 20px;
+            margin-top: 35px;
+            &.enrollment-steps {
+              div {
+                margin-bottom: 10px;
+                h4 {
+                  margin-top: 0;
+                  margin-bottom: 5px;
+                }
+              }
+              strong {
+                text-decoration: underline;
+                background-color: #0e6984;
+              }
+            }
+            &.refund {
+              ul {
+                list-style: none;
+                padding-left: 0;
+              }
+            }
             h3 {
               margin: 0 0 10px;
               span {
@@ -237,16 +279,8 @@ body {
           }
         }
         img {
-          width: 250px;
-          height: 166px;
+          width: calc(100% - 10px);
           background-size: cover;
-          &.dumpling-pic {
-            background-image: url('../img/dawushan2.jpg');
-          }
-          &.rafting-pic {
-            background-image: url('../img/dawushan1.jpg');
-
-          }
         }
       }
       &.chat {

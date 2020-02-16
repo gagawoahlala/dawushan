@@ -48,7 +48,7 @@ module.exports = {
             esModule: false,
             name: '[path][name].[ext]',
             // outputPath: 'images/',
-            // limit: 1024
+            limit: 1024 * 50
           }
         }
       },
@@ -79,12 +79,14 @@ module.exports = {
               speed: 4
             },
             gifsicle: {
-              interlaced: false,
+              interlaced: true,
+              optimizationLevel: 3
             },
             // the webp option will enable WEBP
-            webp: {
-              quality: 75
-            }
+            // webp: {
+            //   quality: 75,
+            //   size: 100 * 1024
+            // }
           }
         },
       },

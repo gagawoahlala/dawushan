@@ -6,6 +6,10 @@
   user-select: none;
   font-family: 'Road Geek', 'Helvetica';
 }
+a {
+  color: #FCB315;
+  font-size: inherit;
+}
 body {
   display: flex;
   div.overlay {
@@ -213,6 +217,11 @@ body {
             font-weight: 100;
             line-height: 18px;
           }
+          strong {
+            background-color: #ffffff;
+            color: black;
+            display: inline-block;
+          }
           header {
             * {
               font-size: 16px;
@@ -222,6 +231,7 @@ body {
               font-size: 26px;
               margin-bottom: 45px;
               font-weight: bold;
+              line-height: 30px;
             }
             h2 {
 
@@ -256,10 +266,6 @@ body {
                   margin-bottom: 5px;
                 }
               }
-              strong {
-                text-decoration: underline;
-                background-color: #0e6984;
-              }
             }
             &.refund {
               ul {
@@ -274,6 +280,7 @@ body {
                 border-bottom: 3px solid rgb(0, 180, 230);
                 box-shadow: 0 0 15px -1px rgb(0, 180, 230), 
                 0 0 12px -1px rgb(0, 180, 230) inset;
+                font-size: 15px;
               }
             }
           }

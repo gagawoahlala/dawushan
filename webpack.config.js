@@ -15,6 +15,7 @@ module.exports = {
   },
   devtool: 'source-map',
   optimization: {
+    concatenateModules: true,
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
   plugins: [new MiniCssExtractPlugin({
@@ -45,10 +46,47 @@ module.exports = {
           loader: 'url-loader',
           options: {
             esModule: false,
-            name: '[name].[ext]',
-            outputPath: 'images/',
+            name: '[path][name].[ext]',
+            // outputPath: 'images/',
+            // limit: 1024
           }
         }
+      },
+      // {
+      //   test: /\.(svg|gif|png|eot|jpg|woff|ttf)$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     name: '[path][name].[ext]',
+      //     esModule: false
+      //   },
+      // },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: {
+          loader: 'image-webpack-loader',
+          options: {
+            enforce: 'pre',
+            mozjpeg: {
+              progressive: true,
+              quality: 65
+            },
+            // optipng.enabled: false will disable optipng
+            optipng: {
+              enabled: false,
+            },
+            pngquant: {
+              quality: [0.65, 0.90],
+              speed: 4
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            // the webp option will enable WEBP
+            webp: {
+              quality: 75
+            }
+          }
+        },
       },
       { test: /\.js$/,
          use: {

@@ -33,6 +33,8 @@ const dialog = [
   }
 ]
 
+const start = Date.now();
+
 const bitchCount = 5;
 const photoCount = 12;
 const HAS_CLICKED_STAR = 'HAS_CLICKED_STAR';
@@ -144,5 +146,13 @@ window.onload = function () {
     });
   }
 
-
+  const loader = this.document.querySelector('#loader');
+  const end = Date.now();
+  if (end - start > 500) {
+      loader.classList.add('hide');
+  } else {
+    setTimeout(()=> {
+      loader.classList.add('hide');
+    }, 500)
+  }
 }

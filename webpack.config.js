@@ -28,20 +28,16 @@ module.exports = {
   module: {
     rules: [
       {
-        // HTML LOADER
         test: /\.html$/,
         use: {
           loader: 'html-loader',
           options: {
             root: path.resolve(__dirname, './src'),
             attributes: ['img:src', 'link:href']
-
-            // attributes: false,
-            // interpolate: true
           }
         },
       },
-      { test: /\.(svg|gif|png|eot|jpg|woff|ttf)$/, 
+      { test: /\.(svg|gif|png|eot|jpe?g|woff|ttf)$/, 
         use: {
           loader: 'url-loader',
           options: {
@@ -52,14 +48,6 @@ module.exports = {
           }
         }
       },
-      // {
-      //   test: /\.(svg|gif|png|eot|jpg|woff|ttf)$/,
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: '[path][name].[ext]',
-      //     esModule: false
-      //   },
-      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: {
@@ -91,17 +79,23 @@ module.exports = {
         },
       },
       { test: /\.js$/,
-         use: {
-           loader: "babel-loader",
-           options: { presets: ['es2015']}
-         }
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: { presets: ['es2015']}
+        }
       },
       {
         test: /\.(sa|sc)ss$/,
         // exclude: [/node_modules/],
         use: [
             MiniCssExtractPlugin.loader,
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
             {
               loader: 'postcss-loader',
               options: {
@@ -111,7 +105,12 @@ module.exports = {
                 }
               }
             },
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
           ]
       },
       {

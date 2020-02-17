@@ -13,7 +13,7 @@ const bitchSource = importAll(require.context('../img/bitchSource/', false, /\.(
 const dialog = [
   {
     date: moment().format("ddd, MMM DD"),
-    text: '你好，我叫杨大宝，我和洋葱花是此次大雾山活动的组织者。',
+    text: `你好，我叫杨大宝，<a target='_blank' href='https://www.instagram.com/derek_ytl'>我</a>和<a target='_blank' href='https://www.instagram.com/onion_flower/'>洋葱花</a>是此次大雾山活动的组织者。`,
     time: moment().subtract(30, 'minutes').format('LT')
   },
   {

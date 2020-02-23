@@ -28,7 +28,7 @@ const dialog = [
   },
   {
     date: '',
-    text: `如果感兴趣的话，请点击<a target='_blank' href='https://forms.gle/DpCjQWmo5x38MDLk9'>这个</a>链接报名吧！活动详情请戳下方的星星✨`,
+    text: `如果感兴趣的话，请戳下方的星星✨查看活动详情吧！报名链接也在里面哦！`,
     time: moment().subtract(1, 'minutes').format('LT')
   }
 ]

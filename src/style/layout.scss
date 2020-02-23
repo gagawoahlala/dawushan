@@ -401,6 +401,31 @@ body {
           width: calc(100% - 10px);
           background-size: cover;
         }
+        button {
+          line-height: 12px;
+          margin-top: 22px;
+          margin-bottom: 35px;
+          border-radius: 8px;
+          border: 3px solid rgb(0, 40, 70);
+          animation: border-flicker 2s linear forwards;
+  
+          padding: 11px 15px;
+          width: calc(100% - 90px);
+          height: 60px;
+          background: transparent;
+          .btn-inner {
+            animation: text-flicker 2s linear forwards;
+            color: rgba(120, 0, 50, .5);
+            line-height: 12px;
+            position: relative;
+            bottom: 2px;
+            span {
+              color: inherit;
+              animation: letter-flicker 3s linear infinite;
+  
+            }
+          }
+        }
       }
       &.chat {
         * {
@@ -589,6 +614,7 @@ body {
           justify-content: space-around;
         }
         button {
+          visibility: hidden;
           line-height: 12px;
           margin-top: 22px;
           margin-bottom: 35px;
